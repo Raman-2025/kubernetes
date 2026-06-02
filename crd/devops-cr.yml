@@ -1,0 +1,9 @@
+kind: DevOpsBatch
+apiVersion: tws.com/v1
+metadata:
+  name: batch-9
+spec:
+  name: devops-zero to hero junoon batch 9
+  duration: 3 months 
+  platform: tws website
+  mode: live as always  
