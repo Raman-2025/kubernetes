@@ -1,0 +1,26 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: sidecar-test
+spec:
+  containers:
+          
+    - name: main-container
+      image: busybox
+      command: ["sh","-c","while true; do echo 'hello dosto ' >> /var/log/app.log; sleep 5s ; done"]  
+      
+      volumeMounts:
+      - name: shared-logs
+        mountPath: /var/log/
+
+    - name: sidecar-container
+      image: busybox
+      command: ["sh","-c","tail -f /var/log/app.log"]   
+      
+      volumeMounts:
+      - name: shared-logs
+        mountPath: /var/log/
+
+  volumes:
+   - name: shared-logs
+     emptyDir: {}   
